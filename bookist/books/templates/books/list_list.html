@@ -1,0 +1,25 @@
+{% extends "base_books.html" %}
+
+{% block content %}
+<h1 class="white-text font-style">My Lists</h1>
+<hr>
+{% if booklist_list %}
+
+    {% for booklist in booklist_list %}
+
+    {% if request.user == booklist.list_author %}
+    <div class="link-style">
+
+        <a href="{{ booklist.get_absolute_url }}" class="book-list-style">
+            <p class="book-list-style">{{ booklist.list_title }}</a></p>
+    </div>
+<hr>
+    {% else %}
+    <p></p>
+    {% endif %}
+    {% endfor %}
+
+{% else %}
+<p>There are no lists in the library.</p>
+{% endif %}
+{% endblock %}

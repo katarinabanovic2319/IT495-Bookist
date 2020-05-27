@@ -1,0 +1,40 @@
+{% extends "base_books.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            {% if user.profile_image %}
+            <img class="profile-image" src="{{ user.profile_image.url }}"/>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="margin-top:20px; text-align:center;">
+                <div class="card-body">
+                    <div class="card-text">
+                        <p><a href="{% url 'lists' %}">My lists</a></p>
+                        <p><a href="{% url 'list-new' %}">Add a new list</a></p>
+                        <p><a href="{% url 'book-new' %}">Add a new book</a></p>
+                        <p><a href="{% url 'author-new' %}">Add a new author</a></p>
+                        <p><a href="{% url 'people' %}">Find friends</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white-text">
+                    <button class="btn btn-success"><a href="{% url 'profile-update' pk=user.pk %}">Edit profile</a>
+                    </button>
+                    <div style="margin-left:20px;margin-top:20px">
+                        <p>Hi {{ user.username}}</p>
+                        <p>Biografija: {{ user.user_bio }}</p>
+                        <p>Location: {{ user.location }}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

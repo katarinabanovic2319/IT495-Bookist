@@ -1,0 +1,19 @@
+{% extends "base_books.html" %}
+
+{% block content %}
+  <h1>Profile</h1>
+  <p>Hi {{ request.user.username}}</p>
+  <p>Biografija: {{ user.user_bio }}</p>
+  <p>Location: {{ user.location }}</p>
+{% if user.profile_image %}
+<img src="{{ user.profile_image.url }}" width="70" height="70">
+{% endif %}
+
+<li><a href="{% url 'lists' %}">See lists</a></li>
+<li><a href="{% url 'list-new' %}">Add a new list</a></li>
+<li><a href="{% url 'book-new' %}">Add a new book</a></li>
+<li><a href="{% url url 'author-new' %}">Add author</a></li>
+<li><a href="{% url 'profile-update' pk=user.pk %}">Edit profile</a></li>
+<li><a href="{% url 'people' %}">Find friends</a></li>
+
+{% endblock %}

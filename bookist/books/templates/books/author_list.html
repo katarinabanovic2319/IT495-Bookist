@@ -1,0 +1,18 @@
+{% extends "base_books.html" %}
+
+{% block content %}
+<h1 class="white-text font-style">Author List</h1>
+<hr>
+{% if bookauthor_list %}
+{% for bookauthor in bookauthor_list %}
+<div class="link-style">
+        <a href="{{ bookauthor.get_absolute_url }}" class="book-list-style">
+        <p class="book-list-style"> {{ bookauthor.author_first_name }} {{ bookauthor.author_last_name }}</a></p>
+</div>
+<hr>
+{% endfor %}
+{% else %}
+<p>There are no authors in the library.</p>
+{% endif %}
+
+{% endblock %}

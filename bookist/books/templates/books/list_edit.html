@@ -1,0 +1,13 @@
+{% extends "base_books.html" %}
+
+{% block content %}
+<div class="white-text">
+        <h2>New list</h2>
+{% load crispy_forms_tags %}
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="save btn btn-success">Save</button>
+    </form>
+</div>
+
+{% endblock %}

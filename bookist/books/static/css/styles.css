@@ -1,0 +1,110 @@
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-item{
+    width:100px;
+}
+
+.homecontent{
+    margin-left: 150px;
+    margin-right: auto;
+    width: 1350px;
+    height: 200px;
+}
+
+.naslov{
+   font-family: TiemposHeadlineWeb-Bold,Georgia,serif;
+   padding-top: 30px;
+}
+
+.naslov > h2{
+    font-weight: 700;
+    color: white;
+}
+
+.cover-img{
+    width: 100%;
+    border-radius: 15%;
+    box-shadow: inset 0px 0px 40px 40px #1f262d;
+    opacity: 0.7;
+}
+
+body{
+    background: #1f262d;
+}
+
+.btn-success > a{
+    color: white;
+}
+
+.white-text{
+    color: white;
+}
+
+.card {
+    background: #456;
+    color: white;
+}
+
+.book-list{
+    width: 100px;
+    height: 150px;
+}
+
+hr{
+    background:#456;
+}
+
+.font-style{
+    font-family: TiemposHeadlineWeb-Bold,Georgia,serif;
+}
+
+div.link-style a:link{
+    color: white;
+}
+
+div.link-style a:visited{
+    color: white;
+}
+
+div.link-style a:hover{
+    text-decoration: none;
+}
+
+.book-list-style{
+    font-weight:bold;
+    font-size:20px;
+}
+
+.pagination {
+    background-color: #f9f9f9;
+    display: inline-flex;
+    justify-content: center;
+    border-radius: 100px;
+    position: absolute;
+    content: ' ';
+    left: 50%;
+    bottom: 10;
+    transform: translateX(-50%);
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #eee;
+}
+
+.image-detail{
+    margin-top: 20px;
+}
+
+.profile-image{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+.card-padding{
+    margin-top: 20px;
+}

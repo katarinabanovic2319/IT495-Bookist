@@ -1,0 +1,80 @@
+{% extends "base_books.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            {% if book.book_image %}
+            <img src="{{ book.book_image.url }}" width="240" style="margin-top:20px;">
+            {% endif %}
+        </div>
+        <div class="col-sm">
+            <div class="white-text" style="margin-top:20px;">
+                <h1>Title: {{ book.book_title }}</h1>
+                <p><strong>Author:</strong> <a href="{% url 'author-detail' book.book_author.pk %}">{{ book.book_author}}</a></p>
+                <p><strong>Summary:</strong> {{ book.book_description }}</p>
+                <p><strong>ISBN:</strong> {{ book.book_isbn }}</p>
+                <p><strong>Published:</strong> {{ book.book_year }}</p>
+                <p><strong>Genre:</strong> {{ book.book_genre.all|join:", " }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <button class="btn btn-success" style="margin-top:10px; margin-left:10px;"><a
+                    href="{% url 'book-edit' pk=book.pk %}">Edit book</a></button>
+            {% if user.is_authenticated %}
+            <button class="btn btn-success" style="margin-top:10px;"><a href="{% url 'book-review' pk=book.pk %}">Review
+                book</a></button>
+            {% else %}
+            <p><a href="{% url 'login'%}?next={{request.path}}">Login to add a review</a></p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="white-text">
+                <div style="margin-left:20px;margin-top:20px">
+                    <h4>Comments</h4>
+                    {% for bookcomment in book.bookcomment_set.all %}
+                    <hr>
+                    <p>{{ bookcomment.comment_author }} ({{ bookcomment.comment_post_date }}) -
+                        {{bookcomment.comment_text}}</p>
+                    {% endfor %}
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'book-comment' book.id %}">Add a new comment</a>
+                    {% else %}
+                    <p><a href="{% url 'login'%}?next={{request.path}}">Login</a> to add a new comment</p>
+                    {% endif %}
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="white-text">
+                <div style="margin-left:20px;margin-top:20px">
+                    <h4>Reviews</h4>
+                    {% for bookreview in book.bookreview_set.all %}
+                    <hr>
+                    <p>{{ bookreview.review_user }} - {{bookreview.review_score}}</p>
+                    {% if request.user == bookreview.review_user %}
+                    <a href="{% url 'review-update' bookreview.id %}">Edit</a>
+                    {% else %}
+                    <p></p>
+                    {% endif %}
+                    {% endfor %}
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'book-review' book.id %}">Add a new review</a>
+                    {% else %}
+                    <p><a href="{% url 'login'%}?next={{request.path}}">Login</a> to add a new review</p>
+                    {% endif %}
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

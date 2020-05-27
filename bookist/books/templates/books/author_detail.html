@@ -1,0 +1,22 @@
+{% extends "base_books.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div class="white-text">
+    <h1>{{ bookauthor.author_first_name }} {{ bookauthor.author_last_name }}</h1>
+    <p><strong>Name: </strong>{{ bookauthor.author_first_name }}</p> <!-- author detail link not yet defined -->
+<p><strong>Last name: </strong> {{ bookauthor.author_last_name }}</p>
+<p><strong>Biography: </strong> {{ bookauthor.author_bio }}</p>
+<button class="btn btn-success"><a href="{% url 'author-edit' pk=bookauthor.pk %}">Edit author</a></button>
+
+</div>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base_books.html" %}
+
+{% block content %}
+<div class="container white-text">
+    <h1>{{ booklist.list_title }}</h1>
+<div style="margin-left:20px;margin-top:20px">
+
+    <hr>
+    <p>List description: {{ booklist.list_description }}</p>
+    <p>List author: {{ booklist.list_author }}</p>
+<hr>
+    {% for booklist in book.booklist_set.all %}
+    <p>{{ booklist.book_title }}</p>
+    {% endfor %}
+
+    <p><strong>Books in this list:</strong> {{ booklist.list_books.all|join:", " }}</p>
+</div>
+</div>
+
+{% endblock %}
+

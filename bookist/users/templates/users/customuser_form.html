@@ -1,0 +1,17 @@
+{% extends "base_books.html" %}
+
+{% block content %}
+<div class="white-text">
+    {% load crispy_forms_tags %}
+    <form action="" method="post" enctype='multipart/form-data'>
+    {% csrf_token %}
+    <table>
+    {{ form|crispy }}
+    </table>
+    <input type="submit" value="Submit" />
+
+</form>
+</div>
+
+
+{% endblock %}

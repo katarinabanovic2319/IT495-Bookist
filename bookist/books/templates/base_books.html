@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title>Title</title>{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'index' %}">Bookist</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'books' %}">books</a>
+                <a class="nav-item nav-link" href="{% url 'authors' %}">authors</a>
+                {% if request.user.is_superuser %}
+                <a class="nav-link" href="{% url 'admin:index' %}">{{ user.get_username }}</a>
+                {% else %}
+                <a class="nav-item nav-link" href="{% url 'profile-withpk' pk=user.pk %}">{{ request.user.get_username }}</a>
+                {% endif %}
+                <a class="nav-item nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+                {% else %}
+                <a class="nav-item nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'signup'%}?next={{request.path}}">Sign up</a>
+                {% endif %}
+            </div>
+            <form class="form-inline my-2 my-lg-0 ml-auto w-100 justify-content-end" action="{% url 'search_results' %}" method="get">
+                <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="homecontent">
+        <div class="col-lg-10 ">{% block content %}{% endblock %}
+
+        </div>
+        <div class="col-lg-10 ">{% block logincontent %}{% endblock %}
+        </div>
+
+
+    </div>
+
+
+
+
+</body>
+</html>

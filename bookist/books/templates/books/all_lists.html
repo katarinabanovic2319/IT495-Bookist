@@ -1,0 +1,15 @@
+{% extends "base_books.html" %}
+
+{% block content %}
+<h1>Author List</h1>
+<ul>
+    {% for list in all_lists %}
+    {% if not request.user == list.list_author %}
+    <li>
+        <a href="{{ list.get_absolute_url }}">{{ list.list_title }}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+
+</ul>
+{% endblock %}

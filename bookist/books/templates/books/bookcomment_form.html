@@ -1,0 +1,15 @@
+{% extends "base_books.html" %}
+
+{% block content %}
+<div class="white-text">
+    <p>Post your comment for: <a href="{% url 'book-detail' book.pk %}">{{book.book_title}}</a></p>
+    {% load crispy_forms_tags %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <input type="submit" value="Submit"/>
+
+    </form>
+</div>
+
+{% endblock %}

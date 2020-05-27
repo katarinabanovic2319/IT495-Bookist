@@ -1,0 +1,48 @@
+{% extends "base_books.html" %}
+
+
+{% block content %}
+{% load static %}
+<img src="{% static 'books/book-cover-design.png'%}" class="cover-img" alt="Responsive image">
+<div class="container">
+    <div class="naslov text-center">
+<h2>Track the books you read</h2>
+<h2>Save those you want to read</h2>
+<h2>Tell your friends what's good</h2>
+        {% if user.is_authenticated %}
+        <p></p>
+        {% else %}
+        <button type="button" class="btn btn-success"><a href="{% url 'signup' %}">Get started</a></button>
+        {% endif %}
+</div>
+</div>
+
+<h6 class="white-text">Bookist let's you</h6>
+<div class="row" style="padding-bottom: 50px;">
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">Keep track of every book you’ve ever read or want to read.</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">Compile and share lists of films on any topic and keep a watchlist of films to see.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">Write and share reviews, and follow friends and other members to read&nbsp;theirs.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

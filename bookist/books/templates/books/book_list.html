@@ -1,0 +1,32 @@
+{% extends "base_books.html" %}
+
+{% block content %}
+<h1 class="white-text font-style">Book List</h1>
+<hr>
+{% if book_list %}
+{% for book in book_list %}
+<div class="link-style">
+    <a href="{{ book.get_absolute_url }}" class="book-list-style">
+        {% if book.book_image %}
+            <p class="book-list-style"><img src="{{ book.book_image.url }}" class="book-list">
+            {% endif %} {{ book.book_title }}</p></a>
+</div>
+<hr>
+{% endfor %}
+{% else %}
+<p class="white-text">There are no books in the library.</p>
+{% endif %}
+<div class="pagination justify-content-center">
+    <li class="page-item">
+        {% if page_obj.has_previous %}
+        <a class="page-link" href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+    </li>
+    <li class="page-item">
+        {% if page_obj.has_next %}
+        <a class="page-link" href="{{ request.path }}?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </li>
+</div>
+{% endblock %}
+

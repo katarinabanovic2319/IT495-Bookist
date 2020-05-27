@@ -1,0 +1,21 @@
+{% extends "base_books.html" %}
+{% block content %}
+<div class="white-text">
+    <h1>Search result</h1>
+    <hr>
+    <div class="link-style">
+        {% if book_list %}
+        {% for book in book_list %}
+        <a href="{{ book.get_absolute_url }}">
+            {% if book.book_image %}
+            <p class="book-list-style"><img src="{{ book.book_image.url }}" class="book-list">
+                {% endif %}{{ book.book_title }}</a> ({{book.book_author}})
+        <hr>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>There are no books in the library.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
